@@ -4,7 +4,7 @@
 
   <groupId>com.github.asufana</groupId>
   <artifactId>jpa-entity</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
   <properties>
@@ -154,7 +154,7 @@
     <connection>scm:git:git@github.com:asufana/jpa-entity.git</connection>
     <developerConnection>scm:git:git@github.com:asufana/jpa-entity.git</developerConnection>
     <url>scm:git:git@github.com:asufana/jpa-entity.git</url>
-    <tag>HEAD</tag>
+    <tag>jpa-entity-1.0</tag>
   </scm>
 
   <distributionManagement>
