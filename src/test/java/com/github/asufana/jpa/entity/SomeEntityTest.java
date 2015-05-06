@@ -1,13 +1,13 @@
 package com.github.asufana.jpa.entity;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 import org.junit.*;
 
 import com.github.asufana.jpa.*;
+import com.github.asufana.jpa.functions.test.*;
 
-public class SomeEntityTest {
+public class SomeEntityTest extends UnitTest {
     
     @Before
     public void before() {
