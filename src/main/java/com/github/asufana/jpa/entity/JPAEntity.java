@@ -26,13 +26,6 @@ public abstract class JPAEntity<T> extends BaseEntity {
     }
     
     @SuppressWarnings("unchecked")
-    public List<T> find(final String query, final Object... params) {
-        Query q = em().createQuery(JPQL.createQuery(className(), query));
-        q = JPQL.setParams(q, params);
-        return q.getResultList();
-    }
-    
-    @SuppressWarnings("unchecked")
     public T save() {
         if (em().contains(this) == false) {
             em().persist(this);
@@ -46,6 +39,14 @@ public abstract class JPAEntity<T> extends BaseEntity {
         em().remove(this);
         em().flush();
         return (T) this;
+    }
+    
+    //TODO hana to Static method
+    @SuppressWarnings("unchecked")
+    public List<T> find(final String query, final Object... params) {
+        Query q = em().createQuery(JPQL.createQuery(className(), query));
+        q = JPQL.setParams(q, params);
+        return q.getResultList();
     }
     
     //TODO hana to Static method
