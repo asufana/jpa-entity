@@ -122,6 +122,17 @@
 			<artifactId>c3p0</artifactId>
 			<version>0.9.5</version>
 		</dependency>
+		<!-- ByteCode -->
+		<dependency>
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy</artifactId>
+			<version>0.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy-agent</artifactId>
+			<version>0.6.3</version>
+		</dependency>
 		<!-- Utils -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
