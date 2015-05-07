@@ -57,6 +57,10 @@ public abstract class JPAEntity<T> extends BaseEntity {
                                   .toString());
     }
     
+    public static Long count2() {
+        throw new UnsupportedOperationException("Please annotate your JPA model with @javax.persistence.Entity annotation.");
+    }
+    
     //TODO hana to Static method
     @SuppressWarnings("unchecked")
     public List<T> findAll() {
