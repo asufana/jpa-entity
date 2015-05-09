@@ -13,6 +13,6 @@ public class SomeEntity extends JPAEntity<SomeEntity> {
     }
     
     public static Long count2() {
-        throw new RuntimeException("override!");
+        throw new UnsupportedOperationException("Please annotate your JPA model with @javax.persistence.Entity annotation.");
     }
 }
