@@ -1,17 +1,15 @@
-package com.github.asufana.jpa.functions.enhancer;
+package com.github.asufana.jpa.functions.enhancer.bytebuddy;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import com.github.asufana.jpa.entity.*;
-
 public class EnhancerTest {
     
     @Test
     public void testEnhance() {
         Enhancer.enhance(SomeEntity.class);
-        assertThat(SomeEntity.count2(), is(0L));
+        assertThat(SomeEntity.count(), is(0L));
     }
 }

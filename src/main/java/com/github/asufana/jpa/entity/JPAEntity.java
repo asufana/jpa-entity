@@ -5,21 +5,19 @@ import java.util.*;
 import javax.persistence.*;
 
 import com.github.asufana.jpa.*;
-import com.github.asufana.jpa.exceptions.*;
 
 public abstract class JPAEntity<T> extends BaseEntity {
     
-    protected EntityManager em() {
-        isEntity();
+    protected static EntityManager em() {
         return JPA.instance().em();
     }
     
-    private void isEntity() {
-        if (this.getClass().getDeclaredAnnotation(Entity.class) == null) {
-            throw new JPAEntityException("This is not @Entity class: "
-                    + className());
-        }
-    }
+//    private void isEntity() {
+//        if (this.getClass().getDeclaredAnnotation(Entity.class) == null) {
+//            throw new JPAEntityException("This is not @Entity class: "
+//                    + className());
+//        }
+//    }
     
     public boolean isPersistent() {
         return em().contains(this);
@@ -57,7 +55,7 @@ public abstract class JPAEntity<T> extends BaseEntity {
                                   .toString());
     }
     
-    public static Long count2() {
+    public static long count2() {
         throw new UnsupportedOperationException("Please annotate your JPA model with @javax.persistence.Entity annotation.");
     }
     

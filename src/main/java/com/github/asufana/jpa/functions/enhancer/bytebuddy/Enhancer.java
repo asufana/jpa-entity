@@ -1,4 +1,4 @@
-package com.github.asufana.jpa.functions.enhancer;
+package com.github.asufana.jpa.functions.enhancer.bytebuddy;
 
 import net.bytebuddy.*;
 import net.bytebuddy.agent.*;
@@ -19,7 +19,7 @@ public class Enhancer {
     
     public static void enhance(final Class<?> klass) {
         new ByteBuddy().redefine(klass)
-                       .method(ElementMatchers.named("count2"))
+                       .method(ElementMatchers.named("count"))
                        .intercept(MethodDelegation.to(Count.class))
                        .make()
                        .load(INSTANCE.getClass().getClassLoader(),
@@ -27,7 +27,7 @@ public class Enhancer {
     }
     
     public static class Count {
-        public static Long count2(@Origin final Class<?> klass) {
+        public static long count(@Origin final Class<?> klass) {
             return Long.parseLong(JPA.instance()
                                      .em()
                                      .createQuery(String.format("select count(*) from %s e",

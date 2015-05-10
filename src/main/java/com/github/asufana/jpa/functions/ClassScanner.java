@@ -14,7 +14,6 @@ import com.github.asufana.jpa.exceptions.*;
 
 public class ClassScanner {
     
-    //private static final Reflections INSTANCE = new Reflections("com.github.asufana");
     private static final Reflections INSTANCE = new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("com.github.asufana"))
                                                                                           .setScanners(new SubTypesScanner(false),
                                                                                                        new TypeAnnotationsScanner(),
