@@ -1,5 +1,6 @@
 package com.github.asufana.jpa.functions;
 
+import java.lang.annotation.*;
 import java.lang.reflect.*;
 import java.util.*;
 
@@ -23,40 +24,73 @@ public class ClassScanner {
         return INSTANCE.getTypesAnnotatedWith(Entity.class);
     }
     
-    public static Map<String, String> findJPAEntityConfig() {
-        final Set<Field> fields = findFieldWithJPAEntityConfig();
-        return getFieldValue(fields);
+    public static Map<String, String> findJPAEntityConnectionConfig() {
+        final Set<Field> fields = findFieldWithAnntations(JPAEntityConfig.class);
+        return getMapFieldValue(fields);
     }
     
-    private static Set<Field> findFieldWithJPAEntityConfig() {
-        final Set<Field> fields = INSTANCE.getFieldsAnnotatedWith(JPAEntityConfig.class);
+    public static List<String> findJPAEntityEnhanceConfig() {
+        final Set<Field> fields = findFieldWithAnntations(JPAEntityEnhanceClassNames.class);
+        return getListFieldValue(fields);
+    }
+    
+    private static Set<Field> findFieldWithAnntations(final Class<? extends Annotation> annotation) {
+        final Set<Field> fields = INSTANCE.getFieldsAnnotatedWith(annotation);
         if (fields.size() == 0) {
             throw new JPAEntityException(String.format("Can't find @%s field.",
-                                                       JPAEntityConfig.class.getSimpleName()));
+                                                       annotation.getSimpleName()));
         }
         return fields;
     }
     
     @SuppressWarnings("unchecked")
-    private static Map<String, String> getFieldValue(final Set<Field> fields) {
+    private static Map<String, String> getMapFieldValue(final Set<Field> fields) {
         Object object = null;
         Field field = null;
         for (final Field f : fields) {
             field = f;
             isStaticField(field);
             object = getValue(field);
+            break;
         }
         if (object == null) {
-            throw new JPAEntityException(String.format("@JPAEntityConfig field '%s' has no value.",
+            throw new JPAEntityException(String.format("@%s field '%s' has no value.",
+                                                       JPAEntityConfig.class.getSimpleName(),
                                                        field.getType()
                                                             .getSimpleName()));
         }
         if (object instanceof Map<?, ?> == false) {
-            throw new JPAEntityException(String.format("@JPAEntityConfig field '%s' value is not Map.",
+            throw new JPAEntityException(String.format("@%s field '%s' value is not Map.",
+                                                       JPAEntityConfig.class.getSimpleName(),
                                                        field.getType()
                                                             .getSimpleName()));
         }
         return (Map<String, String>) object;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private static List<String> getListFieldValue(final Set<Field> fields) {
+        Object object = null;
+        Field field = null;
+        for (final Field f : fields) {
+            field = f;
+            isStaticField(field);
+            object = getValue(field);
+            break;
+        }
+        if (object == null) {
+            throw new JPAEntityException(String.format("@%s field '%s' has no value.",
+                                                       JPAEntityEnhanceClassNames.class.getSimpleName(),
+                                                       field.getType()
+                                                            .getSimpleName()));
+        }
+        if (object instanceof List<?> == false) {
+            throw new JPAEntityException(String.format("@%s field '%s' value is not List.",
+                                                       JPAEntityEnhanceClassNames.class.getSimpleName(),
+                                                       field.getType()
+                                                            .getSimpleName()));
+        }
+        return (List<String>) object;
     }
     
     private static void isStaticField(final Field field) {

@@ -5,18 +5,27 @@ import java.util.*;
 import javax.persistence.*;
 
 import com.github.asufana.jpa.functions.*;
+import com.github.asufana.jpa.functions.enhancer.javassist.*;
 
 public class JPA {
     
     private static EntityManagerFactory emFactory;
     private static EntityManager em;
     private static JPA INSTANCE = instance();
+    private static Map<String, String> configMap;
     
     public static JPA instance() {
         if (INSTANCE == null) {
-            INSTANCE = new JPA(ClassScanner.findJPAEntityConfig());
+            configMap = ClassScanner.findJPAEntityConnectionConfig();
+            INSTANCE = new JPA(configMap);
+            enhanceClass();
         }
         return INSTANCE;
+    }
+    
+    private static void enhanceClass() {
+        final List<String> enhanceClassNames = ClassScanner.findJPAEntityEnhanceConfig();
+        enhanceClassNames.forEach(Enhancer::enhance);
     }
     
     private JPA(final Map<String, String> params) {

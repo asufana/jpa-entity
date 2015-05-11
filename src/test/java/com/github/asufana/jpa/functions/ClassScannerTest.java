@@ -19,7 +19,7 @@ public class ClassScannerTest {
     
     @Test
     public void testFindJPAEntityConfig() throws Exception {
-        final Map<String, String> params = ClassScanner.findJPAEntityConfig();
+        final Map<String, String> params = ClassScanner.findJPAEntityConnectionConfig();
         assertThat(params, is(notNullValue()));
         assertThat(params.size(), is(not(0)));
     }
