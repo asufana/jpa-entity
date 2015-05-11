@@ -8,8 +8,11 @@ public class Enhancer {
         try {
             final ClassPool classPool = ClassPool.getDefault();
             final CtClass cc = classPool.get(className);
+            
+            //count
             cc.addMethod(CtMethod.make("public static long count() { return 1L; }",
                                        cc));
+            
             cc.toClass();
         }
         catch (final Exception e) {

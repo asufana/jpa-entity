@@ -5,12 +5,17 @@ import org.junit.runner.notification.*;
 import org.junit.runners.*;
 import org.junit.runners.model.*;
 
+import com.github.asufana.jpa.*;
+
 public class JPAEntityJUnitRunner extends Runner {
     
     private final JUnit4 jUnit4;
     
     public JPAEntityJUnitRunner(final Class<?> testClass) throws InitializationError {
         jUnit4 = new JUnit4(testClass);
+        
+        //Enhance class
+        JPA.instance();
     }
     
     @Override
