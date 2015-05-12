@@ -25,7 +25,7 @@ public abstract class JPAEntity<T> extends BaseEntity {
     }
     
     public static long count() {
-        throw new JPAEntityException("unimplement.");
+        throw new JPAEntityException("You have to call JPA.instance() method first.");
     }
     
 //    public Long count() {
@@ -53,7 +53,7 @@ public abstract class JPAEntity<T> extends BaseEntity {
     
     @SuppressWarnings({"rawtypes"})
     public static List find(final String query, final Object... params) {
-        throw new JPAEntityException("unimplement.");
+        throw new JPAEntityException("You have to call JPA.instance() method first.");
     }
     
 //    public List<T> find(final String query, final Object... params) {
@@ -64,7 +64,7 @@ public abstract class JPAEntity<T> extends BaseEntity {
     
     @SuppressWarnings("rawtypes")
     public static List findAll() {
-        throw new JPAEntityException("unimplement.");
+        throw new JPAEntityException("You have to call JPA.instance() method first.");
     }
     
 //    public List<T> findAll() {
