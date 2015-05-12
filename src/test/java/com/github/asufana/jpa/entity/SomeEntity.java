@@ -11,8 +11,4 @@ public class SomeEntity extends JPAEntity<SomeEntity> {
     public SomeEntity(final String name) {
         this.name = name;
     }
-    
-//    public static Long count2() {
-//        throw new UnsupportedOperationException("Please annotate your JPA model with @javax.persistence.Entity annotation.");
-//    }
 }

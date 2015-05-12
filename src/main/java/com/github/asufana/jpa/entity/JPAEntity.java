@@ -5,6 +5,7 @@ import java.util.*;
 import javax.persistence.*;
 
 import com.github.asufana.jpa.*;
+import com.github.asufana.jpa.exceptions.*;
 
 public abstract class JPAEntity<T> extends BaseEntity {
     
@@ -21,6 +22,10 @@ public abstract class JPAEntity<T> extends BaseEntity {
     
     public boolean isPersistent() {
         return em().contains(this);
+    }
+    
+    public static long count() {
+        throw new JPAEntityException("unimplement.");
     }
     
     @SuppressWarnings("unchecked")
@@ -45,18 +50,6 @@ public abstract class JPAEntity<T> extends BaseEntity {
         Query q = em().createQuery(JPQL.createQuery(className(), query));
         q = JPQL.setParams(q, params);
         return q.getResultList();
-    }
-    
-    //TODO hana to Static method
-    public Long count() {
-        return Long.parseLong(em().createQuery(String.format("select count(*) from %s e",
-                                                             className()))
-                                  .getSingleResult()
-                                  .toString());
-    }
-    
-    public static long count2() {
-        throw new UnsupportedOperationException("Please annotate your JPA model with @javax.persistence.Entity annotation.");
     }
     
     //TODO hana to Static method

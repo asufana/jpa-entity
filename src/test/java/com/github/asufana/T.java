@@ -32,6 +32,7 @@ public class T {
     public final static List<String> classNames = new ArrayList<String>() {
         {
             add("com.github.asufana.jpa.functions.enhancer.javassist.SomeEntity");
+            add("com.github.asufana.jpa.entity.SomeEntity");
         }
     };
     

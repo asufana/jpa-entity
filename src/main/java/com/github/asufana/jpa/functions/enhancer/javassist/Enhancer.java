@@ -10,7 +10,9 @@ public class Enhancer {
             final CtClass cc = classPool.get(className);
             
             //count
-            cc.addMethod(CtMethod.make("public static long count() { return 1L; }",
+            cc.addMethod(CtMethod.make("public static long count() { return Long.parseLong(com.github.asufana.jpa.JPA.instance().em().createQuery(\"select count(*) from "
+                                               + className
+                                               + " e\").getSingleResult().toString()); }",
                                        cc));
             
             cc.toClass();

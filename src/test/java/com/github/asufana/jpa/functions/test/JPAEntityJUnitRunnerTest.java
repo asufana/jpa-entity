@@ -4,7 +4,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.*;
 
-import com.github.asufana.jpa.functions.enhancer.javassist.*;
+import com.github.asufana.jpa.entity.*;
 
 public class JPAEntityJUnitRunnerTest extends UnitTest {
     

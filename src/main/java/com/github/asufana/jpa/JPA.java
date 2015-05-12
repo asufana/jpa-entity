@@ -12,13 +12,11 @@ public class JPA {
     private static EntityManagerFactory emFactory;
     private static EntityManager em;
     private static JPA INSTANCE = instance();
-    private static Map<String, String> configMap;
     
     public static JPA instance() {
         if (INSTANCE == null) {
-            configMap = ClassScanner.findJPAEntityConnectionConfig();
-            INSTANCE = new JPA(configMap);
             enhanceClass();
+            INSTANCE = new JPA(ClassScanner.findJPAEntityConnectionConfig());
         }
         return INSTANCE;
     }

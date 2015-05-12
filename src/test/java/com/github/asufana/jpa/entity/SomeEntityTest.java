@@ -22,12 +22,12 @@ public class SomeEntityTest extends UnitTest {
     @Test
     public void testInsert() {
         final SomeEntity entity = new SomeEntity("hana");
-        assertThat(entity.count(), is(0L));
+        assertThat(SomeEntity.count(), is(0L));
         assertThat(entity.isPersistent(), is(false));
         
         //Save
         entity.save();
-        assertThat(entity.count(), is(1L));
+        assertThat(SomeEntity.count(), is(1L));
         assertThat(entity.isPersistent(), is(true));
         
         //FindAll
@@ -40,17 +40,17 @@ public class SomeEntityTest extends UnitTest {
     @Test
     public void testDelete() {
         final SomeEntity entity = new SomeEntity("hana");
-        assertThat(entity.count(), is(0L));
+        assertThat(SomeEntity.count(), is(0L));
         assertThat(entity.isPersistent(), is(false));
         
         //Save
         entity.save();
-        assertThat(entity.count(), is(1L));
+        assertThat(SomeEntity.count(), is(1L));
         assertThat(entity.isPersistent(), is(true));
         
         //Delete
         entity.delete();
-        assertThat(entity.count(), is(0L));
+        assertThat(SomeEntity.count(), is(0L));
         assertThat(entity.isPersistent(), is(false));
     }
 }

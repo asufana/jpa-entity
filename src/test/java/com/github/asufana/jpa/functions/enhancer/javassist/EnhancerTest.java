@@ -12,5 +12,4 @@ public class EnhancerTest {
         Enhancer.enhance("com.github.asufana.jpa.functions.enhancer.javassist.SomeEntity");
         assertThat(SomeEntity.count(), is(1L));
     }
-    
 }
