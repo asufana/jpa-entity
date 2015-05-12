@@ -31,7 +31,7 @@ public class SomeEntityTest extends UnitTest {
         assertThat(entity.isPersistent(), is(true));
         
         //FindAll
-        assertThat(entity.findAll().get(0), is(entity));
+        assertThat(SomeEntity.findAll().get(0), is(entity));
         
         //Select
         assertThat(entity.find("name=?", "hana").get(0), is(entity));

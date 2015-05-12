@@ -15,6 +15,12 @@ public class Enhancer {
                                                + " e\").getSingleResult().toString()); }",
                                        cc));
             
+            //find all
+            cc.addMethod(CtMethod.make("public static java.util.List findAll() { return com.github.asufana.jpa.JPA.instance().em().createQuery(\"select e from "
+                                               + className
+                                               + " e\").getResultList(); }",
+                                       cc));
+            
             cc.toClass();
         }
         catch (final Exception e) {

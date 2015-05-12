@@ -52,12 +52,17 @@ public abstract class JPAEntity<T> extends BaseEntity {
         return q.getResultList();
     }
     
-    //TODO hana to Static method
-    @SuppressWarnings("unchecked")
-    public List<T> findAll() {
-        return em().createQuery(String.format("select e from %s e",
-                                              this.getClass().getSimpleName()))
-                   .getResultList();
+//    //TODO hana to Static method
+//    @SuppressWarnings("unchecked")
+//    public List<T> findAll() {
+//        return em().createQuery(String.format("select e from %s e",
+//                                              this.getClass().getSimpleName()))
+//                   .getResultList();
+//    }
+    
+    @SuppressWarnings("rawtypes")
+    public static List findAll() {
+        throw new JPAEntityException("unimplement.");
     }
     
 }
