@@ -7,11 +7,9 @@ A PlayFramework1-like JPA Entity manager.
 [![Build Status](https://travis-ci.org/asufana/JPAEntity.svg?branch=master)](https://travis-ci.org/asufana/JPAEntity)
 
 
-## Examples
-
 ### Configuration
 
-DB config is Map field annotated with @JPAEntityConfig.
+DB config is Map field annotated with @JPAEntityConfig and @JPAEntityEnhanceClassNames.
 
 ```java
 @JPAEntityConfig
@@ -50,6 +48,10 @@ public class SomeEntity extends JPAEntity<SomeEntity> {
 ```
 
 ### CRUD
+
+SomeEntity instance has ```save()```, ```delete()``` and ```isPresistent()``` methods.
+
+SomeEntity class has ```count()```, ```find()``` and ```findAll()``` static methods.
 
 ```java
 JPA.beginTran();
