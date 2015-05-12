@@ -21,6 +21,15 @@ public class Enhancer {
                                                + " e\").getResultList(); }",
                                        cc));
             
+            //find
+            cc.addMethod(CtMethod.make("public static java.util.List find(String query, Object[] params) { "
+                                               + "javax.persistence.Query q = com.github.asufana.jpa.JPA.instance().em().createQuery(com.github.asufana.jpa.entity.JPQL.createQuery(\""
+                                               + className
+                                               + "\", query));"
+                                               + "q = com.github.asufana.jpa.entity.JPQL.setParams(q, params);"
+                                               + "return q.getResultList(); }",
+                                       cc));
+            
             cc.toClass();
         }
         catch (final Exception e) {

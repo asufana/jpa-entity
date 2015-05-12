@@ -34,7 +34,7 @@ public class SomeEntityTest extends UnitTest {
         assertThat(SomeEntity.findAll().get(0), is(entity));
         
         //Select
-        assertThat(entity.find("name=?", "hana").get(0), is(entity));
+        assertThat(SomeEntity.find("name=?", "hana").get(0), is(entity));
     }
     
     @Test

@@ -16,5 +16,7 @@ public class JPAEntityJUnitRunnerTest extends UnitTest {
         //So SomeEntity.count() doesn't throw unimplement exception.
         assertThat(SomeEntity.count(), is(0L));
         assertThat(SomeEntity.findAll(), is(Collections.emptyList()));
+        assertThat(SomeEntity.find("name=?", "hana"),
+                   is(Collections.emptyList()));
     }
 }

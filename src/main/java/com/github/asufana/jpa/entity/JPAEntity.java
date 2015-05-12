@@ -28,6 +28,13 @@ public abstract class JPAEntity<T> extends BaseEntity {
         throw new JPAEntityException("unimplement.");
     }
     
+//    public Long count() {
+//        return Long.parseLong(em().createQuery(String.format("select count(*) from %s e",
+//                                                             className()))
+//                                  .getSingleResult()
+//                                  .toString());
+//    }
+    
     @SuppressWarnings("unchecked")
     public T save() {
         if (em().contains(this) == false) {
@@ -44,25 +51,26 @@ public abstract class JPAEntity<T> extends BaseEntity {
         return (T) this;
     }
     
-    //TODO hana to Static method
-    @SuppressWarnings("unchecked")
-    public List<T> find(final String query, final Object... params) {
-        Query q = em().createQuery(JPQL.createQuery(className(), query));
-        q = JPQL.setParams(q, params);
-        return q.getResultList();
+    @SuppressWarnings({"rawtypes"})
+    public static List find(final String query, final Object... params) {
+        throw new JPAEntityException("unimplement.");
     }
     
-//    //TODO hana to Static method
-//    @SuppressWarnings("unchecked")
-//    public List<T> findAll() {
-//        return em().createQuery(String.format("select e from %s e",
-//                                              this.getClass().getSimpleName()))
-//                   .getResultList();
+//    public List<T> find(final String query, final Object... params) {
+//        Query q = em().createQuery(JPQL.createQuery(className(), query));
+//        q = JPQL.setParams(q, params);
+//        return q.getResultList();
 //    }
     
     @SuppressWarnings("rawtypes")
     public static List findAll() {
         throw new JPAEntityException("unimplement.");
     }
+    
+//    public List<T> findAll() {
+//        return em().createQuery(String.format("select e from %s e",
+//                                              this.getClass().getSimpleName()))
+//                   .getResultList();
+//    }
     
 }
