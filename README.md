@@ -4,8 +4,6 @@
 
 A PlayFramework1-like JPA Entity manager.
 
-[![Build Status](https://travis-ci.org/asufana/JPAEntity.svg?branch=master)](https://travis-ci.org/asufana/JPAEntity)
-
 
 ### Configuration
 
