@@ -8,6 +8,9 @@ public class Enhancer {
         try {
             final ClassPool classPool = ClassPool.getDefault();
             final CtClass cc = classPool.get(className);
+            if (cc.isFrozen()) {
+                return;
+            }
             
             //count
             cc.addMethod(CtMethod.make("public static long count() { return Long.parseLong(com.github.asufana.jpa.JPA.instance().em().createQuery(\"select count(*) from "
